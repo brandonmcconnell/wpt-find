@@ -1,24 +1,24 @@
-# find-wpt-tests
+# wpt-find
 A handy shell function for searching wpt.fyi for tests matching a provided search term
 
 # Installation
 
-Either add the `find-wpt-tests` function directly to your shell profile file (either `.bashrc`, `.bash_profile`, or `.zshrc` depending on your setup), or save the script file (`./find-wpt-tests`) somewhere on your local machine and add add it as a source to your shell profile file which runs that shell script.
+Either add the `wpt-find` function directly to your shell profile file (either `.bashrc`, `.bash_profile`, or `.zshrc` depending on your setup), or save the script file (`./wpt-find`) somewhere on your local machine and add add it as a source to your shell profile file which runs that shell script.
 
 ** Make sure you adjust the `"/wpt"` path in the function to match the path to the `wpt` repo directory on your local machine, or this function will not work.
 
 If you use an alias, it would look something like this:
 
 ```bash
-source "/path-to-file/find-wpt-tests"
+source "/path-to-file/wpt-find"
 ```
 
 If you get a `permission denied` error when attempting to run the file (likely on your first run), you'll need to grant execution permsisions on the file in order to run it.
 
-You can do that by running this command while in the directory that contains `find-wpt-tests.sh`:
+You can do that by running this command while in the directory that contains `wpt-find.sh`:
 
 ```bash
-chmod +x find-wpt-tests.sh
+chmod +x wpt-find.sh
 ```
 
 # Usage
@@ -28,7 +28,7 @@ chmod +x find-wpt-tests.sh
 **Input**
 
 ```bash
-find-wpt-tests ":dir("
+wpt-find ":dir("
 ```
 
 <details><summary><strong>Raw output</strong></summary><br /><pre>
@@ -98,7 +98,7 @@ https://wpt.fyi/shadow-dom/directionality-002.tentative.html
 **Input**
 
 ```bash
-find-wpt-tests -l ":dir("
+wpt-find -l ":dir("
 ```
 
 <details><summary><strong>Raw output</strong></summary><br /><pre>
@@ -168,7 +168,7 @@ find-wpt-tests -l ":dir("
 **Input**
 
 ```bash
-find-wpt-tests -m ":dir("
+wpt-find -m ":dir("
 ```
 
 <details><summary><strong>Raw output</strong></summary><br /><pre>
@@ -239,8 +239,8 @@ find-wpt-tests -m ":dir("
 
 ```bash
 # either of the below would work (order-agnostic)
-find-wpt-tests -l -m ":dir("
-find-wpt-tests -lm ":dir("
+wpt-find -l -m ":dir("
+wpt-find -lm ":dir("
 ```
 
 <details><summary><strong>Raw output</strong></summary><br /><pre>
