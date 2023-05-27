@@ -1,4 +1,4 @@
-function find-wpt-tests(){
+function wpt-find(){
   cwd=$(pwd)
   local md=0
   local list=0
