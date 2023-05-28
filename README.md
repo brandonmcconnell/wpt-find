@@ -141,7 +141,7 @@ https://wpt.fyi/shadow-dom/directionality-002.tentative.html
 <a href="https://wpt.fyi/shadow-dom/directionality-002.tentative.html">https://wpt.fyi/shadow-dom/directionality-002.tentative.html</a>
 </details>
 
-<br /><br />
+<br />
 
 ### Bulleted list items (`-l` or `--list` flag)
 
@@ -215,7 +215,7 @@ wpt-find --list ":dir("
 <li><a href="https://wpt.fyi/shadow-dom/directionality-002.tentative.html">https://wpt.fyi/shadow-dom/directionality-002.tentative.html</a></li>
 </ul></details>
 
-<br /><br />
+<br />
 
 ### Abbreviated links via markdown (`-m` or `--markdown` flag)
 
@@ -289,7 +289,7 @@ wpt-find -m ":dir("
 <a href="https://wpt.fyi/shadow-dom/directionality-002.tentative.html)">/shadow-dom/directionality-002.tentative.html</a>
 </details>
 
-<br /><br />
+<br />
 
 ### Both bulleted list items & abbreviated links via markdown (`-l` and `-m` flags)
 
@@ -363,6 +363,8 @@ wpt-find -lm ":dir("
 <li><a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html)">/html/semantics/selectors/pseudo-classes/dir.html</a></li>
 <li><a href="https://wpt.fyi/shadow-dom/directionality-002.tentative.html)">/shadow-dom/directionality-002.tentative.html</a></li>
 </ul></details>
+
+<br />
 
 ### Automatically copy results to the clipboard (`-c` or `--copy` flag)
 
