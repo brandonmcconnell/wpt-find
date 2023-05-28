@@ -1,6 +1,14 @@
 # wpt-find
 A handy shell function for searching wpt.fyi for tests matching a provided search term
 
+<details><summary><b>✨ <code>wpt-find</code> video demonstration (click to expand/collapse)</b></summary><br />
+
+https://github.com/brandonmcconnell/wpt-find/assets/5913254/b433159c-d357-46bf-bc37-1c924bb2c813
+
+</details>
+
+**Table of Contents:**
+
 - [wpt-find](#wpt-find)
 - [Installation](#installation)
 - [Config](#config)
