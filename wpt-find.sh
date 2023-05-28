@@ -50,7 +50,7 @@ function wpt-find() {
 
   cd "${directory}"
   echo "Searching...\n"
-  local results=($(grep -ElR "$1" | grep -v "[-]ref.html$" | sed -e "s,^\.,https://wpt.fyi,"))
+  local results=($(grep -ElR "$1" | grep ".html$" | grep -v "[-]ref.html$" | sed -e "s,^\.,https://wpt.fyi,"))
   local filtered_results=()
   local link_prefix="https://wpt.fyi"
   local output_string=""
