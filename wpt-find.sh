@@ -6,13 +6,14 @@ function wpt-find() {
   local md=0
   local list=0
   local title=0
+  local regex=0
   local clipboard=0
   local color_none='\033[0m'      # Default text color
   local color_base='\033[0;32m'   # Result text color
   local color_link='\033[0;34m'   # Result link color (used in markdown)
   local color_line='\033[38;5;8m'   # Neutral gray for separators
 
-  local usage_string="Usage: $(basename $0) [-m|--markdown] [-l|--list] [-t|--title] [-c|--copy] \"[searchterm]\""
+  local usage_string="Usage: $(basename $0) [-m|--markdown] [-l|--list] [-t|--title] [-r|--regex] [-c|--copy] \"[searchterm]\""
 
   # Handling long-form arguments
   for arg in "$@"
@@ -23,11 +24,12 @@ function wpt-find() {
       "--list") set -- "$@" "-l" ;;
       "--title") set -- "$@" "-t" ;;
       "--copy") set -- "$@" "-c" ;;
+      "--regex") set -- "$@" "-r" ;;
       *) set -- "$@" "$arg"
     esac
   done
 
-  while getopts 'mltc' OPTION; do
+  while getopts 'mltrc' OPTION; do
     case "$OPTION" in 
       m) 
         md=1
@@ -37,6 +39,9 @@ function wpt-find() {
         ;;
       t)
         title=1
+        ;;
+      r)
+        regex=1
         ;;
       c)
         clipboard=1
@@ -56,7 +61,12 @@ function wpt-find() {
 
   cd "${directory}"
   echo "Searching...\n"
-  local results=($(grep -ElR "$1" | grep ".html$" | grep -v "[-]ref.html$" | sed -e "s,^\.,https://wpt.fyi,"))
+
+  if [ $regex -eq 1 ]; then
+    local results=($(grep -ElR "$1" | grep ".html$" | grep -v "[-]ref.html$" | sed -e "s,^\.,https://wpt.fyi,"))
+  else
+    local results=($(grep -F -lR "$1" | grep ".html$" | grep -v "[-]ref.html$" | sed -e "s,^\.,https://wpt.fyi,"))
+  fi
   local filtered_results=()
   local link_prefix="https://wpt.fyi"
   local copy_string=""

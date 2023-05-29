@@ -18,8 +18,9 @@ https://github.com/brandonmcconnell/wpt-find/assets/5913254/b433159c-d357-46bf-b
     - [Plain (no flags)](#plain-no-flags)
     - [Bulleted list items (`-l` or `--list` flag)](#bulleted-list-items--l-or---list-flag)
     - [Abbreviated links via markdown (`-m` or `--markdown` flag)](#abbreviated-links-via-markdown--m-or---markdown-flag)
-    - [Both bulleted list items \& abbreviated links via markdown (`-l` and `-m` flags)](#both-bulleted-list-items--abbreviated-links-via-markdown--l-and--m-flags)
+    - [Regex Search (`-r` or `--regex` flag)](#regex-search--r-or---regex-flag)
     - [Automatically copy results to the clipboard (`-c` or `--copy` flag)](#automatically-copy-results-to-the-clipboard--c-or---copy-flag)
+    - [Mixing flags](#mixing-flags)
 
 
 # Installation
@@ -73,79 +74,11 @@ For more information on the purpose of each of these flags and how they work, ch
 
 ### Plain (no flags)
 
-**Input**
-
 ```bash
 wpt-find ":dir("
 ```
 
-**Output**
-
-<details><summary><strong>Raw output</strong></summary><br /><pre>
-https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html
-https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html
-https://wpt.fyi/css/selectors/dir-selector-ltr-003.html
-https://wpt.fyi/css/selectors/dir-style-03a.html
-https://wpt.fyi/css/selectors/dir-selector-auto.html
-https://wpt.fyi/css/selectors/dir-style-01a.html
-https://wpt.fyi/css/selectors/dir-selector-ltr-002.html
-https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html
-https://wpt.fyi/css/selectors/dir-style-02a.html
-https://wpt.fyi/css/selectors/dir-selector-change-001.html
-https://wpt.fyi/css/selectors/dir-style-02b.html
-https://wpt.fyi/css/selectors/dir-selector-querySelector.html
-https://wpt.fyi/css/selectors/dir-selector-change-002.html
-https://wpt.fyi/css/selectors/dir-selector-white-space-001.html
-https://wpt.fyi/css/selectors/dir-selector-change-003.html
-https://wpt.fyi/css/selectors/dir-style-01b.html
-https://wpt.fyi/css/selectors/dir-selector-ltr-001.html
-https://wpt.fyi/css/selectors/dir-style-04.html
-https://wpt.fyi/css/selectors/dir-style-03b.html
-https://wpt.fyi/css/selectors/dir-selector-change-004.html
-https://wpt.fyi/css/selectors/dir-selector-rtl-001.html
-https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html
-https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html
-https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html
-https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html
-https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html
-https://wpt.fyi/shadow-dom/directionality-002.tentative.html
-</pre></details>
-
-<details><summary><strong>Rendered output</strong> (GitHub markdown)</summary><br />
-<a href="https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html">https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html</a><br />
-<a href="https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html">https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-ltr-003.html">https://wpt.fyi/css/selectors/dir-selector-ltr-003.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-03a.html">https://wpt.fyi/css/selectors/dir-style-03a.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-auto.html">https://wpt.fyi/css/selectors/dir-selector-auto.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-01a.html">https://wpt.fyi/css/selectors/dir-style-01a.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-ltr-002.html">https://wpt.fyi/css/selectors/dir-selector-ltr-002.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html">https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-02a.html">https://wpt.fyi/css/selectors/dir-style-02a.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-change-001.html">https://wpt.fyi/css/selectors/dir-selector-change-001.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-02b.html">https://wpt.fyi/css/selectors/dir-style-02b.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-querySelector.html">https://wpt.fyi/css/selectors/dir-selector-querySelector.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-change-002.html">https://wpt.fyi/css/selectors/dir-selector-change-002.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-white-space-001.html">https://wpt.fyi/css/selectors/dir-selector-white-space-001.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-change-003.html">https://wpt.fyi/css/selectors/dir-selector-change-003.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-01b.html">https://wpt.fyi/css/selectors/dir-style-01b.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-ltr-001.html">https://wpt.fyi/css/selectors/dir-selector-ltr-001.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-04.html">https://wpt.fyi/css/selectors/dir-style-04.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-03b.html">https://wpt.fyi/css/selectors/dir-style-03b.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-change-004.html">https://wpt.fyi/css/selectors/dir-selector-change-004.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-rtl-001.html">https://wpt.fyi/css/selectors/dir-selector-rtl-001.html</a><br />
-<a href="https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html">https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html</a><br />
-<a href="https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html">https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html</a><br />
-<a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html">https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html</a><br />
-<a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html">https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html</a><br />
-<a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html">https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html</a><br />
-<a href="https://wpt.fyi/shadow-dom/directionality-002.tentative.html">https://wpt.fyi/shadow-dom/directionality-002.tentative.html</a>
-</details>
-
-<br />
-
 ### Bulleted list items (`-l` or `--list` flag)
-
-**Input**
 
 ```bash
 # either of the below would work
@@ -153,73 +86,7 @@ wpt-find -l ":dir("
 wpt-find --list ":dir("
 ```
 
-**Output**
-
-<details><summary><strong>Raw output</strong></summary><br /><pre>
-- https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html
-- https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html
-- https://wpt.fyi/css/selectors/dir-selector-ltr-003.html
-- https://wpt.fyi/css/selectors/dir-style-03a.html
-- https://wpt.fyi/css/selectors/dir-selector-auto.html
-- https://wpt.fyi/css/selectors/dir-style-01a.html
-- https://wpt.fyi/css/selectors/dir-selector-ltr-002.html
-- https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html
-- https://wpt.fyi/css/selectors/dir-style-02a.html
-- https://wpt.fyi/css/selectors/dir-selector-change-001.html
-- https://wpt.fyi/css/selectors/dir-style-02b.html
-- https://wpt.fyi/css/selectors/dir-selector-querySelector.html
-- https://wpt.fyi/css/selectors/dir-selector-change-002.html
-- https://wpt.fyi/css/selectors/dir-selector-white-space-001.html
-- https://wpt.fyi/css/selectors/dir-selector-change-003.html
-- https://wpt.fyi/css/selectors/dir-style-01b.html
-- https://wpt.fyi/css/selectors/dir-selector-ltr-001.html
-- https://wpt.fyi/css/selectors/dir-style-04.html
-- https://wpt.fyi/css/selectors/dir-style-03b.html
-- https://wpt.fyi/css/selectors/dir-selector-change-004.html
-- https://wpt.fyi/css/selectors/dir-selector-rtl-001.html
-- https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html
-- https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html
-- https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html
-- https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html
-- https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html
-- https://wpt.fyi/shadow-dom/directionality-002.tentative.html
-</pre></details>
-
-<details><summary><strong>Rendered output</strong> (GitHub markdown)</summary><br /><ul>
-<li><a href="https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html">https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html</a></li>
-<li><a href="https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html">https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-ltr-003.html">https://wpt.fyi/css/selectors/dir-selector-ltr-003.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-03a.html">https://wpt.fyi/css/selectors/dir-style-03a.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-auto.html">https://wpt.fyi/css/selectors/dir-selector-auto.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-01a.html">https://wpt.fyi/css/selectors/dir-style-01a.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-ltr-002.html">https://wpt.fyi/css/selectors/dir-selector-ltr-002.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html">https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-02a.html">https://wpt.fyi/css/selectors/dir-style-02a.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-change-001.html">https://wpt.fyi/css/selectors/dir-selector-change-001.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-02b.html">https://wpt.fyi/css/selectors/dir-style-02b.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-querySelector.html">https://wpt.fyi/css/selectors/dir-selector-querySelector.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-change-002.html">https://wpt.fyi/css/selectors/dir-selector-change-002.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-white-space-001.html">https://wpt.fyi/css/selectors/dir-selector-white-space-001.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-change-003.html">https://wpt.fyi/css/selectors/dir-selector-change-003.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-01b.html">https://wpt.fyi/css/selectors/dir-style-01b.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-ltr-001.html">https://wpt.fyi/css/selectors/dir-selector-ltr-001.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-04.html">https://wpt.fyi/css/selectors/dir-style-04.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-03b.html">https://wpt.fyi/css/selectors/dir-style-03b.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-change-004.html">https://wpt.fyi/css/selectors/dir-selector-change-004.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-rtl-001.html">https://wpt.fyi/css/selectors/dir-selector-rtl-001.html</a></li>
-<li><a href="https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html">https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html</a></li>
-<li><a href="https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html">https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html</a></li>
-<li><a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html">https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html</a></li>
-<li><a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html">https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html</a></li>
-<li><a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html">https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html</a></li>
-<li><a href="https://wpt.fyi/shadow-dom/directionality-002.tentative.html">https://wpt.fyi/shadow-dom/directionality-002.tentative.html</a></li>
-</ul></details>
-
-<br />
-
 ### Abbreviated links via markdown (`-m` or `--markdown` flag)
-
-**Input**
 
 ```bash
 # either of the below would work
@@ -227,148 +94,15 @@ wpt-find --markdown ":dir("
 wpt-find -m ":dir("
 ```
 
-**Output**
-
-<details><summary><strong>Raw output</strong></summary><br /><pre>
-[/css/css-scoping/shadow-directionality-002.tentative.html](https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html)
-[/css/css-scoping/shadow-directionality-001.tentative.html](https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html)
-[/css/selectors/dir-selector-ltr-003.html](https://wpt.fyi/css/selectors/dir-selector-ltr-003.html)
-[/css/selectors/dir-style-03a.html](https://wpt.fyi/css/selectors/dir-style-03a.html)
-[/css/selectors/dir-selector-auto.html](https://wpt.fyi/css/selectors/dir-selector-auto.html)
-[/css/selectors/dir-style-01a.html](https://wpt.fyi/css/selectors/dir-style-01a.html)
-[/css/selectors/dir-selector-ltr-002.html](https://wpt.fyi/css/selectors/dir-selector-ltr-002.html)
-[/css/selectors/dir-selector-auto-direction-change-001.html](https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html)
-[/css/selectors/dir-style-02a.html](https://wpt.fyi/css/selectors/dir-style-02a.html)
-[/css/selectors/dir-selector-change-001.html](https://wpt.fyi/css/selectors/dir-selector-change-001.html)
-[/css/selectors/dir-style-02b.html](https://wpt.fyi/css/selectors/dir-style-02b.html)
-[/css/selectors/dir-selector-querySelector.html](https://wpt.fyi/css/selectors/dir-selector-querySelector.html)
-[/css/selectors/dir-selector-change-002.html](https://wpt.fyi/css/selectors/dir-selector-change-002.html)
-[/css/selectors/dir-selector-white-space-001.html](https://wpt.fyi/css/selectors/dir-selector-white-space-001.html)
-[/css/selectors/dir-selector-change-003.html](https://wpt.fyi/css/selectors/dir-selector-change-003.html)
-[/css/selectors/dir-style-01b.html](https://wpt.fyi/css/selectors/dir-style-01b.html)
-[/css/selectors/dir-selector-ltr-001.html](https://wpt.fyi/css/selectors/dir-selector-ltr-001.html)
-[/css/selectors/dir-style-04.html](https://wpt.fyi/css/selectors/dir-style-04.html)
-[/css/selectors/dir-style-03b.html](https://wpt.fyi/css/selectors/dir-style-03b.html)
-[/css/selectors/dir-selector-change-004.html](https://wpt.fyi/css/selectors/dir-selector-change-004.html)
-[/css/selectors/dir-selector-rtl-001.html](https://wpt.fyi/css/selectors/dir-selector-rtl-001.html)
-[/css/css-pseudo/dir-pseudo-on-input-element.html](https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html)
-[/css/css-pseudo/dir-pseudo-on-bdi-element.html](https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html)
-[/html/semantics/selectors/pseudo-classes/dir01.html](https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html)
-[/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html](https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html)
-[/html/semantics/selectors/pseudo-classes/dir.html](https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html)
-[/shadow-dom/directionality-002.tentative.html](https://wpt.fyi/shadow-dom/directionality-002.tentative.html)
-</pre></details>
-
-<details><summary><strong>Rendered output</strong> (GitHub markdown)</summary><br />
-<a href="https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html)">/css/css-scoping/shadow-directionality-002.tentative.html</a><br />
-<a href="https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html)">/css/css-scoping/shadow-directionality-001.tentative.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-ltr-003.html)">/css/selectors/dir-selector-ltr-003.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-03a.html)">/css/selectors/dir-style-03a.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-auto.html)">/css/selectors/dir-selector-auto.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-01a.html)">/css/selectors/dir-style-01a.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-ltr-002.html)">/css/selectors/dir-selector-ltr-002.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html)">/css/selectors/dir-selector-auto-direction-change-001.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-02a.html)">/css/selectors/dir-style-02a.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-change-001.html)">/css/selectors/dir-selector-change-001.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-02b.html)">/css/selectors/dir-style-02b.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-querySelector.html)">/css/selectors/dir-selector-querySelector.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-change-002.html)">/css/selectors/dir-selector-change-002.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-white-space-001.html)">/css/selectors/dir-selector-white-space-001.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-change-003.html)">/css/selectors/dir-selector-change-003.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-01b.html)">/css/selectors/dir-style-01b.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-ltr-001.html)">/css/selectors/dir-selector-ltr-001.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-04.html)">/css/selectors/dir-style-04.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-style-03b.html)">/css/selectors/dir-style-03b.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-change-004.html)">/css/selectors/dir-selector-change-004.html</a><br />
-<a href="https://wpt.fyi/css/selectors/dir-selector-rtl-001.html)">/css/selectors/dir-selector-rtl-001.html</a><br />
-<a href="https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html)">/css/css-pseudo/dir-pseudo-on-input-element.html</a><br />
-<a href="https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html)">/css/css-pseudo/dir-pseudo-on-bdi-element.html</a><br />
-<a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html)">/html/semantics/selectors/pseudo-classes/dir01.html</a><br />
-<a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html)">/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html</a><br />
-<a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html)">/html/semantics/selectors/pseudo-classes/dir.html</a><br />
-<a href="https://wpt.fyi/shadow-dom/directionality-002.tentative.html)">/shadow-dom/directionality-002.tentative.html</a>
-</details>
-
-<br />
-
-### Both bulleted list items & abbreviated links via markdown (`-l` and `-m` flags)
-
-**Input**
+### Regex Search (`-r` or `--regex` flag)
 
 ```bash
-# any of the below would work (flag-order-agnostic)
-wpt-find --list --markdown ":dir("
-wpt-find -l -m ":dir("
-wpt-find -lm ":dir("
+# either of the below would work
+wpt-find -r "(:is|:where)"
+wpt-find --regex "(:is|:where)"
 ```
 
-**Output**
-
-<details><summary><strong>Raw output</strong></summary><br /><pre>
-- [/css/css-scoping/shadow-directionality-002.tentative.html](https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html)
-- [/css/css-scoping/shadow-directionality-001.tentative.html](https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html)
-- [/css/selectors/dir-selector-ltr-003.html](https://wpt.fyi/css/selectors/dir-selector-ltr-003.html)
-- [/css/selectors/dir-style-03a.html](https://wpt.fyi/css/selectors/dir-style-03a.html)
-- [/css/selectors/dir-selector-auto.html](https://wpt.fyi/css/selectors/dir-selector-auto.html)
-- [/css/selectors/dir-style-01a.html](https://wpt.fyi/css/selectors/dir-style-01a.html)
-- [/css/selectors/dir-selector-ltr-002.html](https://wpt.fyi/css/selectors/dir-selector-ltr-002.html)
-- [/css/selectors/dir-selector-auto-direction-change-001.html](https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html)
-- [/css/selectors/dir-style-02a.html](https://wpt.fyi/css/selectors/dir-style-02a.html)
-- [/css/selectors/dir-selector-change-001.html](https://wpt.fyi/css/selectors/dir-selector-change-001.html)
-- [/css/selectors/dir-style-02b.html](https://wpt.fyi/css/selectors/dir-style-02b.html)
-- [/css/selectors/dir-selector-querySelector.html](https://wpt.fyi/css/selectors/dir-selector-querySelector.html)
-- [/css/selectors/dir-selector-change-002.html](https://wpt.fyi/css/selectors/dir-selector-change-002.html)
-- [/css/selectors/dir-selector-white-space-001.html](https://wpt.fyi/css/selectors/dir-selector-white-space-001.html)
-- [/css/selectors/dir-selector-change-003.html](https://wpt.fyi/css/selectors/dir-selector-change-003.html)
-- [/css/selectors/dir-style-01b.html](https://wpt.fyi/css/selectors/dir-style-01b.html)
-- [/css/selectors/dir-selector-ltr-001.html](https://wpt.fyi/css/selectors/dir-selector-ltr-001.html)
-- [/css/selectors/dir-style-04.html](https://wpt.fyi/css/selectors/dir-style-04.html)
-- [/css/selectors/dir-style-03b.html](https://wpt.fyi/css/selectors/dir-style-03b.html)
-- [/css/selectors/dir-selector-change-004.html](https://wpt.fyi/css/selectors/dir-selector-change-004.html)
-- [/css/selectors/dir-selector-rtl-001.html](https://wpt.fyi/css/selectors/dir-selector-rtl-001.html)
-- [/css/css-pseudo/dir-pseudo-on-input-element.html](https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html)
-- [/css/css-pseudo/dir-pseudo-on-bdi-element.html](https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html)
-- [/html/semantics/selectors/pseudo-classes/dir01.html](https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html)
-- [/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html](https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html)
-- [/html/semantics/selectors/pseudo-classes/dir.html](https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html)
-- [/shadow-dom/directionality-002.tentative.html](https://wpt.fyi/shadow-dom/directionality-002.tentative.html)
-</pre></details>
-
-<details><summary><strong>Rendered output</strong> (GitHub markdown)</summary><br /><ul>
-<li><a href="https://wpt.fyi/css/css-scoping/shadow-directionality-002.tentative.html)">/css/css-scoping/shadow-directionality-002.tentative.html</a></li>
-<li><a href="https://wpt.fyi/css/css-scoping/shadow-directionality-001.tentative.html)">/css/css-scoping/shadow-directionality-001.tentative.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-ltr-003.html)">/css/selectors/dir-selector-ltr-003.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-03a.html)">/css/selectors/dir-style-03a.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-auto.html)">/css/selectors/dir-selector-auto.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-01a.html)">/css/selectors/dir-style-01a.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-ltr-002.html)">/css/selectors/dir-selector-ltr-002.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-auto-direction-change-001.html)">/css/selectors/dir-selector-auto-direction-change-001.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-02a.html)">/css/selectors/dir-style-02a.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-change-001.html)">/css/selectors/dir-selector-change-001.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-02b.html)">/css/selectors/dir-style-02b.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-querySelector.html)">/css/selectors/dir-selector-querySelector.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-change-002.html)">/css/selectors/dir-selector-change-002.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-white-space-001.html)">/css/selectors/dir-selector-white-space-001.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-change-003.html)">/css/selectors/dir-selector-change-003.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-01b.html)">/css/selectors/dir-style-01b.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-ltr-001.html)">/css/selectors/dir-selector-ltr-001.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-04.html)">/css/selectors/dir-style-04.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-style-03b.html)">/css/selectors/dir-style-03b.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-change-004.html)">/css/selectors/dir-selector-change-004.html</a></li>
-<li><a href="https://wpt.fyi/css/selectors/dir-selector-rtl-001.html)">/css/selectors/dir-selector-rtl-001.html</a></li>
-<li><a href="https://wpt.fyi/css/css-pseudo/dir-pseudo-on-input-element.html)">/css/css-pseudo/dir-pseudo-on-input-element.html</a></li>
-<li><a href="https://wpt.fyi/css/css-pseudo/dir-pseudo-on-bdi-element.html)">/css/css-pseudo/dir-pseudo-on-bdi-element.html</a></li>
-<li><a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir01.html)">/html/semantics/selectors/pseudo-classes/dir01.html</a></li>
-<li><a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html)">/html/semantics/selectors/pseudo-classes/dir-html-input-dynamic-text.html</a></li>
-<li><a href="https://wpt.fyi/html/semantics/selectors/pseudo-classes/dir.html)">/html/semantics/selectors/pseudo-classes/dir.html</a></li>
-<li><a href="https://wpt.fyi/shadow-dom/directionality-002.tentative.html)">/shadow-dom/directionality-002.tentative.html</a></li>
-</ul></details>
-
-<br />
-
 ### Automatically copy results to the clipboard (`-c` or `--copy` flag)
-
-**Input**
 
 ```bash
 # either of the below would work
@@ -376,6 +110,11 @@ wpt-find -c ":dir("
 wpt-find --copy ":dir("
 ```
 
-**Output**
+### Mixing flags
 
-_(same as [plain example](#plain-no-flags) above)_
+```bash
+# any of the below would work (flag-order-agnostic)
+wpt-find --list --markdown --title --copy ":dir("
+wpt-find -l -m -t -c ":dir("
+wpt-find -lmtc ":dir("
+```
