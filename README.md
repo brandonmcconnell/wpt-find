@@ -25,14 +25,11 @@ https://github.com/brandonmcconnell/wpt-find/assets/5913254/b433159c-d357-46bf-b
 
 # Installation
 
-Either add the `wpt-find` function directly to your shell profile file (either `.bashrc`, `.bash_profile`, or `.zshrc` depending on your setup), or save the script file (`./wpt-find`) somewhere on your local machine and add it as a source to your shell profile file which runs that shell script.
-
-** Make sure you adjust the `"/wpt"` path in the function to match the path to the `wpt` repo directory on your local machine, or this function will not work.
-
-If you use an alias, it would look something like this:
+Add the `wpt-find` source directly to your shell profile file (either `.bashrc`, `.bash_profile`, or `.zshrc` depending on your setup). It will look something like this:
 
 ```bash
-source "/path-to-file/wpt-find"
+export WPT_FIND_DIRECTORY="$HOME/wpt"
+source "$HOME/wpt-find/wpt-find.sh"
 ```
 
 If you get a `permission denied` error when attempting to run the file (likely on your first run), you'll need to grant execution permissions on the file in order to run it.
@@ -45,28 +42,27 @@ chmod +x wpt-find.sh
 
 # Config
 
-This is the default config included at the top of `wpt-find.sh`:
-
-```bash
-# Config - change any of these values to match your preferred setup
-local directory="/wpt" # Replace this with your local `wpt` checkout path
-local md=0
-local list=0
-local clipboard=0
-local green='\033[0;32m'  # Results text color
-local blue='\033[0;34m'  # Results links color (when rendering markdown)
-local nc='\033[0m'  # Default text color
-```
-
 ## Setting your local `wpt` directory path
 
-This script assumes that you have a local copy of the `wpt` repo on your machine located at `/wpt` which may not be the case for you. Make sure to update the local `directory` config variable to match the path on your machine.
+This script assumes that you have a local copy of the `wpt` repo on your machine located at `/wpt` which may not be the case for you. You can set the environment variable `WPT_FIND_DIRECTORY` to your local `wpt` directory path.
+
+```bash
+export WPT_FIND_DIRECTORY="/your/path/to/wpt"
+```
 
 ** This script searches your local copy of the `wpt` repo, so make sure to pull the latest master version on the `wpt` repo before searching.
 
 ## Overriding default values
 
-If you would like to _always_ have one of these flags enabled, you can override its default false value by switching any of the `0` values in the script's config section to a `1`, for any of these flag-related variables: `md`, `list`, or `clipboard`.
+The script also provides several environment variables that you can set to customize its behavior:
+
+- `WPT_FIND_MD`: Set to `1` to enable markdown output by default.
+- `WPT_FIND_LIST`: Set to `1` to enable list output by default.
+- `WPT_FIND_TITLE`: Set to `1` to include the title in the markdown link by default.
+- `WPT_FIND_REGEX`: Set to `1` to use regex for the search by default.
+- `WPT_FIND_CLIPBOARD`: Set to `1` to enable copying to the clipboard by default.
+
+By default, all of these settings are set to `0` (disabled) and can be enabled as needed using flags (outlined below), or you can use these environment variables above to override the default behavior.
 
 For more information on the purpose of each of these flags and how they work, check the [Usage](#usage) section below.
 
