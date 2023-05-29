@@ -2,12 +2,12 @@ function wpt-find() {
   cwd=$(pwd)
 
   # Config - change any of these values to match your preferred setup
-  local directory="/wpt" # Replace this with your local `wpt` checkout path
-  local md=0
-  local list=0
-  local title=0
-  local regex=0
-  local clipboard=0
+  local directory="${WPT_FIND_DIRECTORY:-/wpt}" # the local `wpt` checkout path
+  local md="${WPT_FIND_MD:-0}"
+  local list="${WPT_FIND_LIST:-0}"
+  local title="${WPT_FIND_TITLE:-0}"
+  local regex="${WPT_FIND_REGEX:-0}"
+  local clipboard="${WPT_FIND_CLIPBOARD:-0}"
   local color_none='\033[0m'      # Default text color
   local color_base='\033[0;32m'   # Result text color
   local color_link='\033[0;34m'   # Result link color (used in markdown)
