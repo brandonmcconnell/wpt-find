@@ -3,7 +3,22 @@ function wpt-find() {
     cwd=$(pwd)
 
     # Config - change any of these values to match your preferred setup
-    local directory="${WPT_FIND_DIRECTORY:-/wpt}" # the local `wpt` checkout path
+    local directory="${WPT_FIND_DIRECTORY}" # the local `wpt` checkout path
+    # Check if the directory env variable is defined
+    if [ -z "$directory" ]; then
+      echo "WPT_FIND_DIRECTORY is not defined. Please set the WPT_FIND_DIRECTORY environment variable."
+      return 1
+    fi
+    # Check if the directory exists
+    if [ ! -d "$directory" ]; then
+      echo "Directory $directory does not exist."
+      return 1
+    fi
+    # Check if the directory is a git repository
+    if [ ! -d "$directory/.git" ]; then
+      echo "Directory $directory is not a git repository."
+      return 1
+    fi
     local md="${WPT_FIND_MARKDOWN:-0}"
     local list="${WPT_FIND_LIST:-0}"
     local title="${WPT_FIND_TITLE:-0}"
