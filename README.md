@@ -57,7 +57,7 @@ export WPT_FIND_DIRECTORY="/your/path/to/wpt"
 
 The script also provides several environment variables that you can set to customize its behavior:
 
-- `WPT_FIND_MD`: Set to `1` to enable markdown output by default.
+- `WPT_FIND_MARKDOWN`: Set to `1` to enable markdown output by default.
 - `WPT_FIND_LIST`: Set to `1` to enable list output by default.
 - `WPT_FIND_TITLE`: Set to `1` to include the title in the markdown link by default.
 - `WPT_FIND_REGEX`: Set to `1` to use regex for the search by default.
