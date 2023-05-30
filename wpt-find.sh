@@ -39,6 +39,9 @@ function wpt-find() {
     local color_line=$color_gray # Neutral gray for separators
     local color_success=$color_green
     local color_error=$color_red
+    # Font weight
+    local font_bold='\e[1m'
+    local font_normal='\e[0m'
 
     local usage_string="Usage: $(basename $0) [-m|--markdown] [-l|--list] [-t|--title] [-r|--regex] [-c|--copy] \"[searchterm]\""
 
@@ -50,7 +53,7 @@ function wpt-find() {
       stty -echo < /dev/tty
       local i=0
       local j=0
-      while [[ 1 ]]
+      while [ 1 ]
       do 
         for j in ${spinner[@]}; 
         do 
@@ -75,7 +78,7 @@ function wpt-find() {
       fi
       tput cnorm
       stty echo < /dev/tty
-      echo -ne "\r${color_error}✘${color_none} Search interrupted\n"
+      echo -ne "\r\n${color_error}✘${color_none} Search interrupted\n"
       exit 1
     }
 
@@ -134,11 +137,79 @@ function wpt-find() {
       return 1
     fi
 
+    # Print script nicename
+    echo -ne "\n${color_cyan}${font_bold}wpt-find${font_normal}${color_none} - Search the web-platform-tests repository\n  ${color_gray_light}╷\n"
+
+    # Flags and corresponding names
+    local flags=("m" "l" "t" "r" "c")
+    local flag_names=("markdown" "list" "title" "regex" "copy")
+    declare -a local_flags=()
+    declare -a env_flags=()
+
+    fill_flags() {
+      local flag=$1
+      local flag_value=$2
+      local env_var=$3
+
+      if [ $flag_value -eq 1 ]; then
+        local flag_name=""
+        local index=0
+        while [ $index -le ${#flags[@]} ]; do
+          if [ "${flags[$index]}" = "$flag" ]; then
+            flag_name="${flag_names[$index]}"
+            if [ -z "$env_var" ]; then
+              # Append to local flags
+              local_flags+=("${flag_name}")
+            else
+              # Append to env flags
+              env_flags+=("${flag_name}")
+            fi
+          fi
+          ((index++))
+        done
+      fi
+    }
+
+    print_flags() {
+      if [ ${#local_flags[@]} -ne 0 ] || [ ${#env_flags[@]} -ne 0 ]; then
+        echo -n "${color_gray_light}  ├─ ${font_bold}Flags enabled: ${font_normal}"
+        if [ ${#local_flags[@]} -ne 0 ]; then
+          local_flags_str="${local_flags[@]}"
+          local_flags_str="${local_flags_str// /, }"
+          local_flags_str="${local_flags_str%,}"
+          printf "${color_gray_light}%s ${color_none}" "$local_flags_str"
+
+          # Check if there are environment flags. If so, print (local)
+          if [ ${#env_flags[@]} -ne 0 ]; then
+            echo -n "${color_gray_light}(${color_none}${font_bold}local${font_normal}${color_gray_light})"
+          fi
+        fi
+        if [ ${#env_flags[@]} -ne 0 ]; then
+          if [ ${#local_flags[@]} -ne 0 ]; then
+            echo -n " | "
+          fi
+          env_flags_str="${env_flags[@]}"
+          env_flags_str="${env_flags_str// /, }"
+          env_flags_str="${env_flags_str%,}"
+          printf "${color_gray_light}%s ${color_none}" "$env_flags_str"
+          echo -n "${color_gray_light}(${color_none}${font_bold}env${font_normal}${color_gray_light})"
+        fi
+        echo
+      fi
+    }
+
+    fill_flags "m" $md "$WPT_FIND_MARKDOWN"
+    fill_flags "l" $list "$WPT_FIND_LIST"
+    fill_flags "t" $title "$WPT_FIND_TITLE"
+    fill_flags "r" $regex "$WPT_FIND_REGEX"
+    fill_flags "c" $clipboard "$WPT_FIND_CLIPBOARD"
+    print_flags
+
     # Fetch and display the commit hash and the date of the last commit
     cd "${directory}"
     local last_commit_hash=$(git log -1 --format="%h")
     local last_commit_date=$(git log -1 --format="%cd")
-    echo "${color_gray_light}Last commit: ${color_purple}$last_commit_hash${color_none} on $last_commit_date${color_none}"
+    echo "${color_gray_light}  └─ ${font_bold}Last commit:${font_normal} ${color_purple}$last_commit_hash${color_gray_light} on $last_commit_date${color_none}"
 
     # Start search
     start_spin "Searching"
