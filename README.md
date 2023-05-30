@@ -18,6 +18,7 @@ https://github.com/brandonmcconnell/wpt-find/assets/5913254/b433159c-d357-46bf-b
     - [Plain (no flags)](#plain-no-flags)
     - [Bulleted list items (`-l` or `--list` flag)](#bulleted-list-items--l-or---list-flag)
     - [Abbreviated links via markdown (`-m` or `--markdown` flag)](#abbreviated-links-via-markdown--m-or---markdown-flag)
+    - [Use HTML document titles as linked text (`-t` or `--title` flag)](#use-html-document-titles-as-linked-text--t-or---title-flag)
     - [Regex Search (`-r` or `--regex` flag)](#regex-search--r-or---regex-flag)
     - [Automatically copy results to the clipboard (`-c` or `--copy` flag)](#automatically-copy-results-to-the-clipboard--c-or---copy-flag)
     - [Mixing flags](#mixing-flags)
@@ -88,6 +89,16 @@ wpt-find --list ":dir("
 # either of the below would work
 wpt-find --markdown ":dir("
 wpt-find -m ":dir("
+```
+
+### Use HTML document titles as linked text (`-t` or `--title` flag)
+
+_only applies when paired with markdown `-m`/`--markdown` flag_
+
+```bash
+# either of the below would work
+wpt-find --title ":dir("
+wpt-find -t ":dir("
 ```
 
 ### Regex Search (`-r` or `--regex` flag)
