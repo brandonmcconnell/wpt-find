@@ -24,6 +24,7 @@ https://github.com/brandonmcconnell/wpt-find/assets/5913254/483a7e1d-15fd-4c7c-b
     - [Regex Search (`-r` or `--regex` flag)](#regex-search--r-or---regex-flag)
     - [Automatically copy results to the clipboard (`-c` or `--copy` flag)](#automatically-copy-results-to-the-clipboard--c-or---copy-flag)
     - [Mixing flags](#mixing-flags)
+- [Note on Performance](#note-on-performance)
 
 
 # Installation
@@ -47,7 +48,7 @@ chmod +x wpt-find.sh
 
 ## Setting your local `wpt` directory path
 
-This script assumes that you have a local copy of the `wpt` repo on your machine located at `/wpt` which may not be the case for you. You can set the environment variable `WPT_FIND_DIRECTORY` to your local `wpt` directory path.
+This script assumes that you have a local copy of the `wpt` repo, which you will need to set the related environment variable `WPT_FIND_DIRECTORY` to in order for the function to properly scan the repository.
 
 ```bash
 export WPT_FIND_DIRECTORY="/your/path/to/wpt"
@@ -127,3 +128,7 @@ wpt-find --list --markdown --title --regex --copy "(:is|:where)"
 wpt-find -l -m -t -r -c "(:is|:where)"
 wpt-find -lmtrc "(:is|:where)"
 ```
+
+# Note on Performance
+
+For longer or more complex searches and larger result sets, the script may appear to pause. This is normal and is a result of processing time. The spinner indicates that wpt-find is actively working.
