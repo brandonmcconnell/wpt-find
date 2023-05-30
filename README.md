@@ -121,7 +121,7 @@ wpt-find --copy ":dir("
 
 ```bash
 # any of the below would work (flag-order-agnostic)
-wpt-find --list --markdown --title --copy ":dir("
-wpt-find -l -m -t -c ":dir("
-wpt-find -lmtc ":dir("
+wpt-find --list --markdown --title --regex --copy "(:is|:where)"
+wpt-find -l -m -t -r -c "(:is|:where)"
+wpt-find -lmtrc "(:is|:where)"
 ```
