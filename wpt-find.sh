@@ -30,6 +30,8 @@ function wpt-find() {
     local color_red='\033[0;31m'
     local color_cyan='\033[38;5;37m'
     local color_gray='\033[38;5;240m'
+    local color_gray_light='\033[38;5;250m'
+    local color_purple='\033[0;35m'
     # Contextual colors
     local color_none='\033[0m'   # Default text color
     local color_base=$color_cyan # Result text color
@@ -43,14 +45,23 @@ function wpt-find() {
     local spinner=( '⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏' )
 
     spin() {
+      local spin_text=$1
       tput civis
       stty -echo < /dev/tty
+      local i=0
+      local j=0
       while [[ 1 ]]
       do 
-        for i in ${spinner[@]}; 
+        for j in ${spinner[@]}; 
         do 
-          echo -ne "\033[2K\033[1A\033[2K\033[1A\r${color_cyan}$i${color_none} Searching ${color_gray}(Ctrl+C to cancel)${color_none}\n"
+          local message="${color_cyan}$j${color_none} ${spin_text} ${color_gray}(Ctrl+C to cancel)${color_none}\n"
+          local prefix=""
+          if [ $i -gt 0 ]; then
+            prefix="\r\033[2K\033[1A\r\033[2K"
+          fi
+          echo -ne "$prefix$message"
           sleep 0.05
+          ((i++))
         done
       done
     }
@@ -69,7 +80,8 @@ function wpt-find() {
     }
 
     start_spin() {
-      spin & pid=$!
+      echo -ne "\n"
+      spin "$1" & pid=$!
     }
 
     stop_spin() {
@@ -122,9 +134,15 @@ function wpt-find() {
       return 1
     fi
 
-    start_spin
+    # Fetch and display the commit hash and the date of the last commit
     cd "${directory}"
+    local last_commit_hash=$(git log -1 --format="%h")
+    local last_commit_date=$(git log -1 --format="%cd")
+    echo "${color_gray_light}Last commit: ${color_purple}$last_commit_hash${color_none} on $last_commit_date${color_none}"
 
+    # Start search
+    start_spin "Searching"
+    cd "${directory}"
     if [ $regex -eq 1 ]; then
       local results=($(grep -ElR "$1" | grep ".html$" | grep -v "[-]ref.html$" | sed -e "s,^\.,https://wpt.fyi,"))
       sleep 4
@@ -133,7 +151,9 @@ function wpt-find() {
       sleep 4
     fi
     stop_spin
-    echo -ne "\r${color_success}✔${color_none} Search complete\n\n"
+
+    # Process any results
+    start_spin "Processing results"
     local filtered_results=()
     local link_prefix="https://wpt.fyi"
     local copy_string=""
@@ -180,9 +200,13 @@ function wpt-find() {
         fi
         index=$((index + 1))
       done
+
+      # Print results
+      stop_spin
+      echo -ne "\r\n${color_success}✔${color_none} Search complete\n\n"
       local line_separator=$(printf "${color_line}%*s${color_none}\n" "$columns" '' | tr ' ' ─)
       echo -e "$line_separator\n$print_string\n$line_separator\n"
-      echo "Found ${count} tests related to your search term \"$1\""
+      echo "Found ${count} tests related to your search term ${color_purple}$1${color_none}"
       if [[ $clipboard -eq 1 ]]; then 
         local clipboard_msg="\nResults have been copied to your clipboard."
         if command -v pbcopy > /dev/null; then
