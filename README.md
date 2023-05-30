@@ -3,7 +3,9 @@ A handy shell function for searching wpt.fyi for tests matching a provided searc
 
 <details><summary><b>✨ <code>wpt-find</code> video demonstration (click to expand/collapse)</b></summary><br />
 
-https://github.com/brandonmcconnell/wpt-find/assets/5913254/b433159c-d357-46bf-bc37-1c924bb2c813
+> 🛈 I sped up the search time in this screen recording for demonstration purposes. Most searches clock in at around 10-20s per search, depending on any regex complexity and if you are scraping titles from the results (multiplied by the result count).
+
+https://github.com/brandonmcconnell/wpt-find/assets/5913254/483a7e1d-15fd-4c7c-b835-60cb341b1ec9
 
 </details>
 
